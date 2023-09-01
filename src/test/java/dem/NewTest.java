@@ -6,6 +6,6 @@ import org.testng.annotations.Test;
 public class NewTest {
   @Test
   public void f() {
-	  Assert.assertEquals(false, false);
+	  Assert.assertEquals(false, true);
   }
 }
