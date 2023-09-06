@@ -19,7 +19,7 @@ jobs:
 
     runs-on: ubuntu-latest
     container:
-      image: openjdk:11
+      image: adoptopenjdk/maven-openjdk11
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
