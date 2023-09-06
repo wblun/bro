@@ -27,5 +27,12 @@ jobs:
       - name: Run TestNG tests
         run: |
           mvn test -Dtestng.xml=testng.xml
+        continue-on-error: false
+      - name: echo crap
+        run: |
+          echo "test msg"
+        continue-on-error: false
+  
+      
 
 
