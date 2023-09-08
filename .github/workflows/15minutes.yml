@@ -1,0 +1,43 @@
+name: Pull Code, Run Tests, and Send Email
+
+on:
+  schedule:
+    - cron: '0/15 * * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: openjdk:11
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Pull Code from Branch
+        run: git pull origin main
+        
+      - name: Install Maven
+        run: |
+          apt-get update
+          apt-get install -y maven
+          
+      - name: Run TestNG tests
+        run: |
+          mvn clean compile test -Dtestng.xml=testng.xml
+
+      - name: Get Job Status
+        run: |
+          job_status=$(mvn test -q -Dmaven.test.failure.ignore=true)
+          if [ "$job_status" == "0" ]; then
+            job_status="SUCCESS"
+          else
+            job_status="FAILURE"
+          fi
+
+      - name: Send Email
+        uses: gmail-actions/gmail-action@v1
+        with:
+          to: recipient@example.com
+          subject: Job Status
+          body: The job has completed with status:$job_status
