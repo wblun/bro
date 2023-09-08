@@ -34,10 +34,3 @@ jobs:
           else
             job_status="FAILURE"
           fi
-
-      - name: Send Email
-        uses: gmail-actions/gmail-action@v1
-        with:
-          to: recipient@example.com
-          subject: Job Status
-          body: The job has completed with status:$job_status
