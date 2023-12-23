@@ -22,7 +22,7 @@ jobs:
           apt-get update
           apt-get install -y maven
           
-      - name: Run TestNG tests
+      - name: Run TestNG tests on local machine
         run: |
           mvn clean compile test -Dtestng.xml=testng.xml
 
