@@ -11,7 +11,7 @@ jobs:
       image: openjdk:11
 
     steps:
-      - name: Checkout Code
+      - name: Checkout Code and sing a donkey
         uses: actions/checkout@v3
 
       - name: Pull Code from Branch
@@ -22,7 +22,7 @@ jobs:
           apt-get update
           apt-get install -y maven
           
-      - name: Run TestNG tests on local machine
+      - name: Run TestNG tests on local machine and do a dosa
         run: |
           mvn clean compile test -Dtestng.xml=testng.xml
 
